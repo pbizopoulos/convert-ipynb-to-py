@@ -1,0 +1,10 @@
+# ipynb to script conversion tool
+https://pbizopoulos.github.io/ipynb-to-script-conversion-tool
+
+# Requirements
+POSIX mandatory utilities
+Make
+Docker
+
+# Development basic commands
+make help		# Show help for browser.
