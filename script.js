@@ -1,10 +1,10 @@
 document.getElementById('load-ipynb-file-input-file').addEventListener('change', function() {
-	let file = document.getElementById('load-ipynb-file-input-file').files[0];
-	let fileReader = new FileReader();
+	const file = document.getElementById('load-ipynb-file-input-file').files[0];
+	const fileReader = new FileReader();
 	fileReader.readAsText(file);
 	fileReader.onload = function(event) {
 		let outputArray = [];
-		let jsonParsed = JSON.parse(event.target.result);
+		const jsonParsed = JSON.parse(event.target.result);
 		for (const cell of jsonParsed.cells) {
 			if (cell.cell_type === 'code') {
 				outputArray.push(cell.source.join(''));
