@@ -1,7 +1,7 @@
 document.getElementById('load-ipynb-file-input-file').addEventListener('change', function() {
 	let file = document.getElementById('load-ipynb-file-input-file').files[0];
 	let fileReader = new FileReader();
-	fileReader.readAsText(file, 'UTF-8');
+	fileReader.readAsText(file);
 	fileReader.onload = function(event) {
 		let outputArray = [];
 		let jsonParsed = JSON.parse(event.target.result);
@@ -29,4 +29,3 @@ function saveData(data, filename) {
 	a.click();
 	window.URL.revokeObjectURL(url);
 }
-
