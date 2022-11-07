@@ -1,3 +1,5 @@
+'use strict';
+
 document.getElementById('load-ipynb-file-input-file').addEventListener('change', function() {
 	const file = document.getElementById('load-ipynb-file-input-file').files[0];
 	const fileReader = new FileReader();
@@ -9,23 +11,23 @@ document.getElementById('load-ipynb-file-input-file').addEventListener('change',
 			if (cell.cell_type === 'code') {
 				outputArray.push(cell.source.join(''));
 			} else if (cell.cell_type === 'markdown') {
-				markdownCommented = cell.source.map(element => `# ${element}`);
+				const markdownCommented = cell.source.map(element => `# ${element}`);
 				outputArray.push(markdownCommented.join(''));
 			}
 		}
-		output = outputArray.join('');
+		const output = outputArray.join('');
 		saveData([output], 'output.py');
 	};
 });
 
-function saveData(data, filename) {
+function saveData(data, fileName) {
 	const a = document.createElement('a');
 	document.body.appendChild(a);
 	a.style = 'display: none';
 	const blob = new Blob(data);
 	const url = window.URL.createObjectURL(blob);
 	a.href = url;
-	a.download = filename;
+	a.download = fileName;
 	a.click();
 	window.URL.revokeObjectURL(url);
 }
