@@ -5,17 +5,18 @@ document.getElementById('load-ipynb-file-input-file').addEventListener('change',
 	const fileReader = new FileReader();
 	fileReader.readAsText(file);
 	fileReader.onload = function(event) {
-		let outputArray = [];
+		let cellSourceArray = [];
 		const jsonParsed = JSON.parse(event.target.result);
 		for (const cell of jsonParsed.cells) {
+			let cellSource = '';
 			if (cell.cell_type === 'code') {
-				outputArray.push(cell.source.join(''));
+				cellSource = cell.source.join('');
 			} else if (cell.cell_type === 'markdown') {
-				const markdownCommented = cell.source.map(element => `# ${element}`);
-				outputArray.push(markdownCommented.join(''));
+				cellSource = cell.source.map(element => `# ${element}`).join('');
 			}
+			cellSourceArray.push(cellSource);
 		}
-		const output = outputArray.join('');
+		const output = cellSourceArray.join('');
 		saveData([output], 'output.py');
 	};
 });
@@ -23,7 +24,6 @@ document.getElementById('load-ipynb-file-input-file').addEventListener('change',
 function saveData(data, fileName) {
 	const a = document.createElement('a');
 	document.body.appendChild(a);
-	a.style = 'display: none';
 	const blob = new Blob(data);
 	const url = window.URL.createObjectURL(blob);
 	a.href = url;
