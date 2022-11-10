@@ -1,5 +1,4 @@
 'use strict';
-
 document.getElementById('load-ipynb-file-input-file').addEventListener('change', function() {
 	const file = document.getElementById('load-ipynb-file-input-file').files[0];
 	const fileReader = new FileReader();
