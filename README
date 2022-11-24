@@ -6,7 +6,7 @@ POSIX mandatory utilities
 Make
 Docker
 
-# Build
+# Check code and build
 git clone https://github.com/pbizopoulos/ipynb-to-script-conversion-tool
 cd ipynb-to-script-conversion-tool/
-make DEBUG=0
+make check all
