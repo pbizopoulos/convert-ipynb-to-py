@@ -1,5 +1,8 @@
 'use strict';
-document.getElementById('load-ipynb-file-input-file').addEventListener('change', function() {
+const loadIpynbFileInputFile = document.getElementById('load-ipynb-file-input-file');
+loadIpynbFileInputFile.onchange = loadIpynbFileInputFileOnChange;
+
+function loadIpynbFileInputFileOnChange() {
 	const file = document.getElementById('load-ipynb-file-input-file').files[0];
 	const fileReader = new FileReader();
 	fileReader.readAsText(file);
@@ -18,7 +21,7 @@ document.getElementById('load-ipynb-file-input-file').addEventListener('change',
 		const output = cellSourceArray.join('');
 		saveData([output], 'output.py');
 	};
-});
+}
 
 function saveData(data, fileName) {
 	const a = document.createElement('a');
