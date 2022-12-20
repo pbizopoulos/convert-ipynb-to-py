@@ -6,7 +6,7 @@ function loadIpynbFileInputFileOnChange() {
 	const file = document.getElementById('load-ipynb-file-input-file').files[0];
 	const fileReader = new FileReader();
 	fileReader.readAsText(file);
-	fileReader.onload = function(event) {
+	fileReader.onload = (event) => {
 		let cellSourceArray = [];
 		const jsonParsed = JSON.parse(event.target.result);
 		for (const cell of jsonParsed.cells) {
@@ -14,7 +14,7 @@ function loadIpynbFileInputFileOnChange() {
 			if (cell.cell_type === 'code') {
 				cellSource = cell.source.join('');
 			} else if (cell.cell_type === 'markdown') {
-				cellSource = cell.source.map(element => `# ${element}`).join('');
+				cellSource = cell.source.map((element) => `# ${element}`).join('');
 			}
 			cellSourceArray.push(cellSource);
 		}
