@@ -2,11 +2,11 @@
 https://pbizopoulos.github.io/ipynb-to-script-conversion-tool
 
 # Requirements
-POSIX shell & utilities
+POSIX Utilities
 Git
 Docker
 
-# Check code and build
+# Check and build code
 git clone https://github.com/pbizopoulos/ipynb-to-script-conversion-tool
 cd ipynb-to-script-conversion-tool/
 make check all
