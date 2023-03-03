@@ -16,7 +16,7 @@ function loadIpynbFileInputFileOnChange() {
 			} else if (cell.cell_type === 'markdown') {
 				cellSource = cell.source.map((element) => `# ${element}`).join('');
 			}
-			cellSourceArray.push(cellSource);
+			cellSourceArray.push(`${cellSource}\n`);
 		}
 		const output = cellSourceArray.join('');
 		saveData([output], 'output.py');
