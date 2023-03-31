@@ -19,7 +19,7 @@ function loadIpynbFileInputFileOnChange() {
 			cellSourceArray.push(`${cellSource}\n`);
 		}
 		const output = cellSourceArray.join("");
-		saveData([output], "output.py");
+		saveData([output], "main.py");
 	};
 }
 
