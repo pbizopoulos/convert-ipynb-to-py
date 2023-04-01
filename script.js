@@ -7,7 +7,7 @@ function loadIpynbFileInputFileOnChange() {
 	const fileReader = new FileReader();
 	fileReader.readAsText(file);
 	fileReader.onload = (event) => {
-		let cellSourceArray = [];
+		const cellSourceArray = [];
 		const jsonParsed = JSON.parse(event.target.result);
 		for (const cell of jsonParsed.cells) {
 			let cellSource = "";
