@@ -14,13 +14,16 @@
 			<a href="https://github.com/pbizopoulos/ipynb-to-script-conversion-tool">Source code</a> | <a href="https://pbizopoulos.github.io">Home page</a> / <b>ipynb to script conversion tool</b>
 		</nav>
 		<div>
-			<label for="load-ipynb-file-input-file">Load ipynb file:</label>
+			<label for="load-ipynb-file-input-file">Choose a local ipynb file:</label>
 			<input accept=".ipynb" id="load-ipynb-file-input-file" name="load-ipynb-file-input-file" type="file">
 		</div>
 		<div> or </div>
 		<div>
-			<label for="load-ipynb-file-input-url">Enter ipynb raw URL:</label>
-			<input id="load-ipynb-file-input-url" name="load-ipynb-file-input-url" type="url">
+			<form>
+				<label for="load-ipynb-file-input-url">Enter a remote ipynb URL from GitHub:</label>
+				<input id="load-ipynb-file-input-url" name="load-ipynb-file-input-url" type="url">
+				<button type="submit">Submit</button>
+			</form>
 		</div>
 		<div id="processing-div"></div>
 	</body>

@@ -1,8 +1,8 @@
 "use strict";
+const form = document.querySelector("form");
 const loadIpynbFileInputFile = document.getElementById("load-ipynb-file-input-file");
 const loadIpynbFileInputUrl = document.getElementById("load-ipynb-file-input-url");
 loadIpynbFileInputFile.onchange = loadIpynbFileInputFileOnChange;
-loadIpynbFileInputUrl.onchange = loadIpynbFileInputUrlOnChange;
 
 function ipynbToScript(data) {
 	const cellSourceArray = [];
@@ -29,14 +29,6 @@ function loadIpynbFileInputFileOnChange() {
 	};
 }
 
-function loadIpynbFileInputUrlOnChange() {
-	fetch(loadIpynbFileInputUrl.value)
-		.then((response) => response.text())
-		.then((blob) => {
-			ipynbToScript(blob);
-		});
-}
-
 function saveData(data, fileName) {
 	const a = document.createElement("a");
 	document.body.appendChild(a);
@@ -47,3 +39,19 @@ function saveData(data, fileName) {
 	a.click();
 	window.URL.revokeObjectURL(url);
 }
+
+form.addEventListener("submit", (event) => {
+	if (!loadIpynbFileInputUrl.checkValidity()) {
+		event.preventDefault();
+		alert("Please enter a valid URL address.");
+	}
+	let url = loadIpynbFileInputUrl.value;
+	if (url.startsWith("https://github.com")) {
+		url = url.replace("github", "raw.githubusercontent").replace("/blob/", "/");
+	}
+	fetch(url)
+		.then((response) => response.text())
+		.then((blob) => {
+			ipynbToScript(blob);
+		});
+});
