@@ -1,8 +1,9 @@
 "use strict";
-const form = document.querySelector("form");
 const loadIpynbFileInputFile = document.getElementById("load-ipynb-file-input-file");
 const loadIpynbFileInputUrl = document.getElementById("load-ipynb-file-input-url");
+const submitButton = document.getElementById("submit-button");
 loadIpynbFileInputFile.onchange = loadIpynbFileInputFileOnChange;
+submitButton.onclick = submitButtonOnClick;
 
 function ipynbToScript(data) {
 	const cellSourceArray = [];
@@ -40,7 +41,7 @@ function saveData(data, fileName) {
 	window.URL.revokeObjectURL(url);
 }
 
-form.addEventListener("submit", (event) => {
+function submitButtonOnClick() {
 	if (!loadIpynbFileInputUrl.checkValidity()) {
 		event.preventDefault();
 		alert("Please enter a valid URL address.");
@@ -50,8 +51,14 @@ form.addEventListener("submit", (event) => {
 		url = url.replace("github", "raw.githubusercontent").replace("/blob/", "/");
 	}
 	fetch(url)
-		.then((response) => response.text())
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error(`HTTP error: ${response.status}`);
+			}
+			return response.text();
+		})
 		.then((blob) => {
 			ipynbToScript(blob);
-		});
-});
+		})
+		.catch((err) => console.error(`Fetch problem: ${err.message}`));
+}
