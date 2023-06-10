@@ -1,6 +1,10 @@
 "use strict";
-const loadIpynbFileInputFile = document.getElementById("load-ipynb-file-input-file");
-const loadIpynbFileInputUrl = document.getElementById("load-ipynb-file-input-url");
+const loadIpynbFileInputFile = document.getElementById(
+	"load-ipynb-file-input-file",
+);
+const loadIpynbFileInputUrl = document.getElementById(
+	"load-ipynb-file-input-url",
+);
 const submitButton = document.getElementById("submit-button");
 loadIpynbFileInputFile.onchange = loadIpynbFileInputFileOnChange;
 submitButton.onclick = submitButtonOnClick;
