@@ -1,0 +1,18 @@
+# Convert ipynb to py
+https://pbizopoulos.github.io/convert-ipynb-to-py
+
+# Requirements
+POSIX Shell & Utilities
+Git
+Docker
+
+# Download
+git clone https://github.com/pbizopoulos/convert-ipynb-to-py $HOME/github.com/pbizopoulos/convert-ipynb-to-py
+cd $HOME/github.com/pbizopoulos/convert-ipynb-to-py/
+
+# Development
+cd docs/ && make clean check all && cd ..
+
+# Staging
+cd docs/ && make STAGING=1
+
